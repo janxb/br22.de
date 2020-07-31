@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>	
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Sriracha:400,700');
+		@import url('https://fonts.googleapis.com/css?family=Concert+One:400,700');
+
+		html,body{
+			height:100%;
+			overflow:hidden;
+		}
+		
+		body{
+			background:black;
+			background-size:cover;
+			font-family:sans-serif;
+			text-align:center;
+			padding-top:20%;
+			opacity:0;
+			transition: 1s opacity;
+		}
+		
+		body.show { opacity:1; }
+
+		.content {
+			width: 400px;
+			height:260px;
+			top:50%;
+			left:50%;
+			margin-top: -130px;
+			margin-left:-200px;
+			background: black;
+			padding-top: 20px;
+			text-align: center;
+			box-shadow:0 3px 36px 0 rgba(0, 0, 0, 0.6);
+			position:fixed;
+			color:white;
+			text-decoration:none;
+		}
+		
+		
+		#background {
+			position:fixed;
+			top:0;
+			left:0;
+			width:100%;
+			height:100%;
+			z-index:-1;
+		}
+
+
+		.content h1, .content h2 {
+			margin:0;
+			font-weight: normal;
+		}
+		
+		.content h1 { font-size: 150px; font-family: 'Concert One'; line-height: 0.6; }
+		.content h2 { font-size: 60px; font-family: 'Sriracha'; line-height: 1; margin-top:3vh; }
+	</style>
+</head>
+<body>
+   <div class="content">
+        <h1>BR22</h1>
+		<h2>Jan Brodda<br>IT Services</h2>
+    </div>
+	
+	<canvas id="background"></canvas>
+	
+	
+	<script src='https://unpkg.com/trianglify@^4/dist/trianglify.bundle.js'></script>
+	
+	<script>
+		function generateBackground(){
+			trianglify({
+				width: window.innerWidth,
+				height: window.innerHeight
+			}).toCanvas(document.getElementById('background'));
+		}
+		
+		window.onresize = function(){
+			clearTimeout(this.id);
+			this.id = setTimeout(generateBackground, 200);
+		};
+		
+		window.onload=function(){
+			document.body.className='show';
+		}
+		
+		generateBackground();
+	</script>
+</body>
+</html>
