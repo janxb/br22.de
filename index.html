@@ -3,6 +3,8 @@
 <head>	
 	<title>BR22 - IT Services</title>
 	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<style>
 		@import url('https://fonts.googleapis.com/css?family=Sriracha:400,700');
 		@import url('https://fonts.googleapis.com/css?family=Concert+One:400,700');
@@ -45,6 +47,7 @@
 			position:fixed;
 			top:0;
 			left:0;
+			bottom:0;
 			width:100%;
 			height:100%;
 			z-index:-1;
@@ -72,14 +75,22 @@
 	<script src='https://unpkg.com/trianglify@^4/dist/trianglify.bundle.js'></script>
 	
 	<script>
+		var pattern;
+		
 		function generateBackground(){
-			trianglify({
+			pattern = trianglify({
 				width: window.innerWidth,
 				height: window.innerHeight
-			}).toCanvas(document.getElementById('background'));
+			});
+			showBackground();
+		}
+		
+		function showBackground(){
+			pattern.toCanvas(document.getElementById('background'));
 		}
 		
 		window.onresize = function(){
+			showBackground();
 			clearTimeout(this.id);
 			this.id = setTimeout(generateBackground, 200);
 		};
