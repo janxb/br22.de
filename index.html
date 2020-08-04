@@ -20,12 +20,23 @@
 			font-family:sans-serif;
 			text-align:center;
 			padding-top:20%;
-			opacity:0;
-			transition: 1s opacity;
 		}
 		
-		body.show { opacity:1; }
-
+		#loading {
+			background:black;
+			position: fixed;
+			top:0;
+			right:0;
+			bottom:0;
+			left:0;
+			transition: 5s opacity;
+			z-index:5;
+		}
+		
+		#loading.hidden {
+			opacity: 0;
+		}
+		
 		.content {
 			width: 400px;
 			height:280px;
@@ -40,6 +51,7 @@
 			position:fixed;
 			color:white;
 			text-decoration:none;
+			z-index:2;
 		}
 		
 		
@@ -64,6 +76,8 @@
 	</style>
 </head>
 <body>
+	<div id="loading"></div>
+
    <div class="content">
         <h1>BR22</h1>
 		<h2>Jan Brodda<br>IT Services</h2>
@@ -96,7 +110,7 @@
 		};
 		
 		window.onload=function(){
-			document.body.className='show';
+			document.getElementById("loading").className='hidden';
 		}
 		
 		generateBackground();
